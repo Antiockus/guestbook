@@ -9,6 +9,11 @@
             "email": "antiockus@gmail.com"
         }
     ],
+    "autoload": {
+      "psr-4" : {
+          "Antiockus\\" :"src"
+      }
+    },
     "require": {
         "catfan/medoo": "^1.2"
     },

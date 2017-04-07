@@ -2,10 +2,18 @@
 
 require_once '../vendor/autoload.php';
 
-$database = new Medoo\Medoo([
+use Medoo\Medoo;
+
+$database = new Medoo([
    'database_type' => 'sqlite',
 'database_file' => '../storage/database.db'
 ]);
+
+$comment = new Antiockus\Comment($database);
+$comment->setEmail('bruvio@example.com')
+->setName('Bruno')
+    ->setComment('Hooray!Saving a comment works!')
+->save();
 
 ?>
 <!doctype html>
