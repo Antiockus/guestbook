@@ -21,10 +21,11 @@ class Comment
     public function findAll()
     {
         $collection = [];
-        $comments = $this->database->select('comments', '*', ["order" => "comments.submissionDate DESC"]);
-        if($comments) {
-            foreach ($comments as $array)
-            {
+        $comments = $this->database->select('comments', '*', ['ORDER' => [
+             'submissionDate' => 'DESC'],
+        ]);
+        if ($comments) {
+            foreach ($comments as $array) {
                 $comment = new self($this->database);
                 $collection[] = $comment
                     ->setComment($array['comment'])
@@ -33,6 +34,7 @@ class Comment
                     ->setSubmissionDate($array['submissionDate']);
             }
         }
+
 
         return $collection;
     }
@@ -57,7 +59,7 @@ class Comment
 
     public function setComment($comment)
     {
-        if( strlen($comment) < 10){
+        if (strlen($comment) < 10) {
             throw new \InvalidArgumentException('Comment too short');
         } else {
             $this->comment = $comment;
